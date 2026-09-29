@@ -17,7 +17,7 @@ import (
 
 	"github.com/mattermost/mattermost/server/public/plugin/plugintest"
 
-	"github.com/mattermost/mattermost-plugin-github/server/plugin"
+	"github.com/antimatterchat/antimatter-plugin-github/server/plugin"
 )
 
 func TestRoundTripper(t *testing.T) {

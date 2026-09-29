@@ -26,7 +26,7 @@ import (
 	"github.com/mattermost/mattermost/server/public/pluginapi/cluster"
 	"github.com/mattermost/mattermost/server/public/pluginapi/experimental/bot/poster"
 
-	"github.com/mattermost/mattermost-plugin-github/server/plugin/graphql"
+	"github.com/antimatterchat/antimatter-plugin-github/server/plugin/graphql"
 )
 
 const (

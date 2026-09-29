@@ -26,7 +26,7 @@ import (
 	"github.com/mattermost/mattermost/server/public/pluginapi/experimental/bot/logger"
 	"github.com/mattermost/mattermost/server/public/pluginapi/experimental/flow"
 
-	"github.com/mattermost/mattermost-plugin-github/server/plugin/graphql"
+	"github.com/antimatterchat/antimatter-plugin-github/server/plugin/graphql"
 )
 
 const (

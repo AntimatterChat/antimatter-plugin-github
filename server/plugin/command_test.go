@@ -25,7 +25,7 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 
-	"github.com/mattermost/mattermost-plugin-github/server/mocks"
+	"github.com/antimatterchat/antimatter-plugin-github/server/mocks"
 )
 
 // Function to get the plugin object for test cases.

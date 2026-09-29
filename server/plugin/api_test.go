@@ -23,7 +23,7 @@ import (
 	"github.com/mattermost/mattermost/server/public/plugin/plugintest"
 	"github.com/mattermost/mattermost/server/public/pluginapi"
 
-	"github.com/mattermost/mattermost-plugin-github/server/testutils"
+	"github.com/antimatterchat/antimatter-plugin-github/server/testutils"
 )
 
 type panicHandler struct{}

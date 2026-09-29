@@ -23,8 +23,8 @@ import (
 	"github.com/mattermost/mattermost/server/public/plugin/plugintest"
 	"github.com/mattermost/mattermost/server/public/pluginapi"
 
-	"github.com/mattermost/mattermost-plugin-github/server/mocks"
-	"github.com/mattermost/mattermost-plugin-github/server/plugin/graphql"
+	"github.com/antimatterchat/antimatter-plugin-github/server/mocks"
+	"github.com/antimatterchat/antimatter-plugin-github/server/plugin/graphql"
 )
 
 func TestFormatChannelOverduePRBody(t *testing.T) {

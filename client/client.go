@@ -14,7 +14,7 @@ import (
 	"github.com/pkg/errors"
 	"golang.org/x/oauth2"
 
-	"github.com/mattermost/mattermost-plugin-github/server/plugin"
+	"github.com/antimatterchat/antimatter-plugin-github/server/plugin"
 )
 
 type PluginAPI interface {

@@ -10,7 +10,7 @@ import (
 	"github.com/google/go-github/v54/github"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/mattermost/mattermost-plugin-github/server/plugin/graphql"
+	"github.com/antimatterchat/antimatter-plugin-github/server/plugin/graphql"
 )
 
 func TestReviewSLAStartKeyStable(t *testing.T) {

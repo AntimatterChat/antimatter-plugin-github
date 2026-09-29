@@ -6,7 +6,7 @@ package main
 import (
 	mmplugin "github.com/mattermost/mattermost/server/public/plugin"
 
-	"github.com/mattermost/mattermost-plugin-github/server/plugin"
+	"github.com/antimatterchat/antimatter-plugin-github/server/plugin"
 )
 
 func main() {

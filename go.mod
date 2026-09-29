@@ -1,4 +1,4 @@
-module github.com/mattermost/mattermost-plugin-github
+module github.com/antimatterchat/antimatter-plugin-github
 
 go 1.25.8
 
