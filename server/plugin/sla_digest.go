@@ -112,9 +112,9 @@ func (p *Plugin) resolveReviewerDisplayName(githubLogin string) string {
 	if githubLogin == "" {
 		return ""
 	}
-	mmUsername := p.getGitHubToUsernameMapping(githubLogin)
-	if mmUsername != "" {
-		return fmt.Sprintf("@%s (%s)", mmUsername, githubLogin)
+	amUsername := p.getGitHubToUsernameMapping(githubLogin)
+	if amUsername != "" {
+		return fmt.Sprintf("@%s (%s)", amUsername, githubLogin)
 	}
 	return fmt.Sprintf("(not connected) - %s", githubLogin)
 }

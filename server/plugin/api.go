@@ -1762,7 +1762,7 @@ func (p *Plugin) createIssue(c *UserContext, w http.ResponseWriter, r *http.Requ
 		return
 	}
 
-	mmMessage := ""
+	amMessage := ""
 	var post *model.Post
 	permalink := ""
 	if issue.PostID != "" {
@@ -1794,7 +1794,7 @@ func (p *Plugin) createIssue(c *UserContext, w http.ResponseWriter, r *http.Requ
 			return
 		}
 
-		mmMessage = fmt.Sprintf("_Issue created from a [Mattermost message](%v) *by %s*._", permalink, username)
+		amMessage = fmt.Sprintf("_Issue created from a [Mattermost message](%v) *by %s*._", permalink, username)
 	}
 
 	ghIssue := &github.IssueRequest{
@@ -1810,10 +1810,10 @@ func (p *Plugin) createIssue(c *UserContext, w http.ResponseWriter, r *http.Requ
 		ghIssue.Milestone = &issue.Milestone
 	}
 
-	if ghIssue.GetBody() != "" && mmMessage != "" {
-		mmMessage = "\n\n" + mmMessage
+	if ghIssue.GetBody() != "" && amMessage != "" {
+		amMessage = "\n\n" + amMessage
 	}
-	*ghIssue.Body = ghIssue.GetBody() + mmMessage
+	*ghIssue.Body = ghIssue.GetBody() + amMessage
 
 	currentUser, err := p.client.User.Get(c.UserID)
 	if err != nil {

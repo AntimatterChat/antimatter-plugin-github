@@ -58,7 +58,7 @@ func init() {
 	}
 
 	// Resolve a GitHub username to the corresponding Mattermost username, if linked.
-	funcMap["lookupMattermostUsername"] = lookupMattermostUsername
+	funcMap["lookupAntimatterUsername"] = lookupAntimatterUsername
 
 	// Trim away markdown comments in the text
 	funcMap["removeComments"] = func(body string) string {
@@ -87,7 +87,7 @@ func init() {
 			prefix := matched[:gitHubUsernameFirstCharIndex]
 			gitHubUsername := matched[gitHubUsernameFirstCharIndex:]
 
-			username := lookupMattermostUsername(gitHubUsername)
+			username := lookupAntimatterUsername(gitHubUsername)
 			if username == "" {
 				return matched
 			}
@@ -143,8 +143,8 @@ func init() {
 	// The user template links to the corresponding GitHub user. If the GitHub user is a known
 	// Mattermost user, their Mattermost handle is referenced as an at-mention instead.
 	template.Must(masterTemplate.New("user").Parse(`
-{{- $mattermostUsername := .GetLogin | lookupMattermostUsername}}
-{{- if $mattermostUsername }}@{{$mattermostUsername}}
+{{- $antimatterUsername := .GetLogin | lookupAntimatterUsername}}
+{{- if $antimatterUsername }}@{{$antimatterUsername}}
 {{- else}}[{{.GetLogin}}]({{.GetHTMLURL}})
 {{- end -}}
 	`))
@@ -574,7 +574,7 @@ func registerGitHubToUsernameMappingCallback(callback func(string) string) {
 	gitHubToUsernameMappingCallback = callback
 }
 
-func lookupMattermostUsername(githubUsername string) string {
+func lookupAntimatterUsername(githubUsername string) string {
 	if gitHubToUsernameMappingCallback == nil {
 		return ""
 	}

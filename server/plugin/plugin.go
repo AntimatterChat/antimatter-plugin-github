@@ -150,8 +150,8 @@ func (p *Plugin) createGithubEmojiMap() {
 
 	p.emojiMap = map[string]string{}
 	for systemEmoji := range model.SystemEmojis {
-		for mmBase, ghBase := range baseGithubEmojiMap {
-			if strings.HasPrefix(systemEmoji, mmBase) {
+		for amBase, ghBase := range baseGithubEmojiMap {
+			if strings.HasPrefix(systemEmoji, amBase) {
 				p.emojiMap[systemEmoji] = ghBase
 			}
 		}
@@ -1326,14 +1326,14 @@ func (p *Plugin) sendRefreshEvent(userID string) {
 // getUsername returns the GitHub username for a given Mattermost user,
 // if the user is connected to GitHub via this plugin.
 // Otherwise it return the Mattermost username. It will be escaped via backticks.
-func (p *Plugin) getUsername(mmUserID string) (string, error) {
-	info, apiEr := p.getGitHubUserInfo(mmUserID)
+func (p *Plugin) getUsername(amUserID string) (string, error) {
+	info, apiEr := p.getGitHubUserInfo(amUserID)
 	if apiEr != nil {
 		if apiEr.ID != apiErrorIDNotConnected {
 			return "", apiEr
 		}
 
-		user, appEr := p.client.User.Get(mmUserID)
+		user, appEr := p.client.User.Get(amUserID)
 		if appEr != nil {
 			return "", appEr
 		}
