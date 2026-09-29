@@ -65,7 +65,6 @@ func TestIsValid(t *testing.T) {
 func TestSetDefaults(t *testing.T) {
 	for _, testCase := range []struct {
 		description string
-		isCloud     bool
 		config      *Configuration
 
 		shouldChange bool
@@ -113,8 +112,7 @@ func TestSetDefaults(t *testing.T) {
 				assert.Len(t, c.WebhookSecret, 32)
 			},
 		}, {
-			description: "Should not set UsePreregisteredApplication in on-prem",
-			isCloud:     false,
+			description: "Should not set UsePreregisteredApplication",
 			config: &Configuration{
 				EncryptionKey:               "abcd",
 				WebhookSecret:               "efgh",
@@ -124,43 +122,11 @@ func TestSetDefaults(t *testing.T) {
 			outputCheck: func(t *testing.T, c *Configuration) {
 				assert.Equal(t, "abcd", c.EncryptionKey)
 				assert.Equal(t, "efgh", c.WebhookSecret)
-			},
-		}, {
-			description: "Should set UsePreregisteredApplication in cloud if no OAuth secret is configured",
-			isCloud:     true,
-			config: &Configuration{
-				EncryptionKey:               "abcd",
-				WebhookSecret:               "efgh",
-				UsePreregisteredApplication: false,
-			},
-			shouldChange: true,
-			outputCheck: func(t *testing.T, c *Configuration) {
-				assert.Equal(t, "abcd", c.EncryptionKey)
-				assert.Equal(t, "efgh", c.WebhookSecret)
-
-				assert.True(t, c.UsePreregisteredApplication)
-			},
-		}, {
-			description: "Should set not UsePreregisteredApplication in cloud if OAuth secret is configured",
-			isCloud:     true,
-			config: &Configuration{
-				EncryptionKey:               "abcd",
-				WebhookSecret:               "efgh",
-				UsePreregisteredApplication: false,
-				GitHubOAuthClientID:         "some id",
-				GitHubOAuthClientSecret:     "some secret",
-			},
-			shouldChange: false,
-			outputCheck: func(t *testing.T, c *Configuration) {
-				assert.Equal(t, "abcd", c.EncryptionKey)
-				assert.Equal(t, "efgh", c.WebhookSecret)
-
-				assert.False(t, c.UsePreregisteredApplication)
 			},
 		},
 	} {
 		t.Run(testCase.description, func(t *testing.T) {
-			changed, err := testCase.config.setDefaults(testCase.isCloud)
+			changed, err := testCase.config.setDefaults()
 
 			assert.Equal(t, testCase.shouldChange, changed)
 			testCase.outputCheck(t, testCase.config)
