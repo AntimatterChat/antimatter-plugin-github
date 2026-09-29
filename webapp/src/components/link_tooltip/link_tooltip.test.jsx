@@ -13,7 +13,7 @@ jest.mock('@/client', () => ({
 jest.mock('react-markdown', () => () => <div/>);
 
 const baseProps = {
-    href: 'https://github.com/mattermost/mattermost-plugin-github/issues/1',
+    href: 'https://github.com/antimatter/antimatter-plugin-github/issues/1',
     connected: true,
     show: true,
     theme: {
@@ -29,52 +29,52 @@ beforeEach(() => {
 
 test('LinkTooltip should fetch issue for github.com link', () => {
     render(<LinkTooltip {...baseProps}/>);
-    expect(Client.getIssue).toHaveBeenCalledWith('mattermost', 'mattermost-plugin-github', '1');
+    expect(Client.getIssue).toHaveBeenCalledWith('antimatter', 'antimatter-plugin-github', '1');
 });
 
 test('LinkTooltip should fetch pull request for github.com link', () => {
     const props = {
         ...baseProps,
-        href: 'https://github.com/mattermost/mattermost-plugin-github/pull/2',
+        href: 'https://github.com/antimatter/antimatter-plugin-github/pull/2',
     };
     render(<LinkTooltip {...props}/>);
-    expect(Client.getPullRequest).toHaveBeenCalledWith('mattermost', 'mattermost-plugin-github', '2');
+    expect(Client.getPullRequest).toHaveBeenCalledWith('antimatter', 'antimatter-plugin-github', '2');
 });
 
 test('LinkTooltip should fetch issue for enterprise link', () => {
     const props = {
         ...baseProps,
-        href: 'https://github.example.com/mattermost/mattermost-plugin-github/issues/3',
+        href: 'https://github.example.com/antimatter/antimatter-plugin-github/issues/3',
         enterpriseURL: 'https://github.example.com',
     };
     render(<LinkTooltip {...props}/>);
-    expect(Client.getIssue).toHaveBeenCalledWith('mattermost', 'mattermost-plugin-github', '3');
+    expect(Client.getIssue).toHaveBeenCalledWith('antimatter', 'antimatter-plugin-github', '3');
 });
 
 test('LinkTooltip should fetch pull request for enterprise link', () => {
     const props = {
         ...baseProps,
-        href: 'https://github.example.com/mattermost/mattermost-plugin-github/pull/4',
+        href: 'https://github.example.com/antimatter/antimatter-plugin-github/pull/4',
         enterpriseURL: 'https://github.example.com',
     };
     render(<LinkTooltip {...props}/>);
-    expect(Client.getPullRequest).toHaveBeenCalledWith('mattermost', 'mattermost-plugin-github', '4');
+    expect(Client.getPullRequest).toHaveBeenCalledWith('antimatter', 'antimatter-plugin-github', '4');
 });
 
 test('LinkTooltip should handle enterprise URL with trailing slash', () => {
     const props = {
         ...baseProps,
-        href: 'https://github.example.com/mattermost/mattermost-plugin-github/issues/5',
+        href: 'https://github.example.com/antimatter/antimatter-plugin-github/issues/5',
         enterpriseURL: 'https://github.example.com/',
     };
     render(<LinkTooltip {...props}/>);
-    expect(Client.getIssue).toHaveBeenCalledWith('mattermost', 'mattermost-plugin-github', '5');
+    expect(Client.getIssue).toHaveBeenCalledWith('antimatter', 'antimatter-plugin-github', '5');
 });
 
 test('LinkTooltip should not fetch if enterprise URL does not match', () => {
     const props = {
         ...baseProps,
-        href: 'https://other-github.com/mattermost/mattermost-plugin-github/issues/6',
+        href: 'https://other-github.com/antimatter/antimatter-plugin-github/issues/6',
         enterpriseURL: 'https://github.example.com',
     };
     render(<LinkTooltip {...props}/>);
@@ -118,7 +118,7 @@ test('LinkTooltip should fallback to enterprise URL for opened by link if html_u
 
     const props = {
         ...baseProps,
-        href: 'https://github.example.com/mattermost/mattermost-plugin-github/issues/3',
+        href: 'https://github.example.com/antimatter/antimatter-plugin-github/issues/3',
         enterpriseURL: 'https://github.example.com',
     };
     render(<LinkTooltip {...props}/>);
@@ -144,12 +144,12 @@ test('LinkTooltip should handle enterprise URL with trailing slash for opened by
 
     const props = {
         ...baseProps,
-        href: 'https://github.example.com/mattermost/mattermost-plugin-github/issues/3',
+        href: 'https://github.example.com/antimatter/antimatter-plugin-github/issues/3',
         enterpriseURL: 'https://github.example.com/',
     };
     render(<LinkTooltip {...props}/>);
 
-    expect(Client.getIssue).toHaveBeenCalledWith('mattermost', 'mattermost-plugin-github', '3');
+    expect(Client.getIssue).toHaveBeenCalledWith('antimatter', 'antimatter-plugin-github', '3');
 
     await waitFor(() => expect(screen.getByText('entuser')).toBeInTheDocument());
 

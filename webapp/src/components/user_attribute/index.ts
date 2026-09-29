@@ -25,13 +25,13 @@ type StateProps = {
 }
 
 function mapStateToProps(state: GlobalState, ownProps: OwnProps): StateProps {
-    const mmUserId = ownProps.user ? ownProps.user.id : '';
+    const amUserId = ownProps.user ? ownProps.user.id : '';
 
     const pluginState = getPluginState(state);
-    const githubUser = pluginState.githubUsers[mmUserId];
+    const githubUser = pluginState.githubUsers[amUserId];
 
     return {
-        id: mmUserId,
+        id: amUserId,
         username: githubUser?.username,
         enterpriseURL: pluginState.enterpriseURL,
     };

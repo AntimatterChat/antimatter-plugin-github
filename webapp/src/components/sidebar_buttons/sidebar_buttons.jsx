@@ -93,7 +93,7 @@ export default class SidebarButtons extends React.PureComponent {
 
     openConnectWindow = (e) => {
         e.preventDefault();
-        window.open('/plugins/github/oauth/connect', 'Connect Mattermost to GitHub', 'height=570,width=520');
+        window.open('/plugins/github/oauth/connect', 'Connect Antimatter to GitHub', 'height=570,width=520');
     };
 
     openRHS = (rhsState) => {

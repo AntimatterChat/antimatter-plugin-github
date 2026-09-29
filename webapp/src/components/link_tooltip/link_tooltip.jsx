@@ -52,7 +52,7 @@ export const LinkTooltip = ({href, connected, show, theme, enterpriseURL}) => {
             setData(res);
         };
 
-        // show is not provided for Mattermost Server < 5.28
+        // show is not provided for Antimatter Server < 5.28
         if (!connected || data || ((typeof (show) !== 'undefined' || show != null) && !show)) {
             return;
         }
