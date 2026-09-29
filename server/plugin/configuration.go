@@ -15,9 +15,9 @@ import (
 	"github.com/mattermost/mattermost/server/public/model"
 )
 
-// configuration captures the plugin's external configuration as exposed in the Mattermost server
+// configuration captures the plugin's external configuration as exposed in the Antimatter server
 // configuration, as well as values computed from the configuration. Any public fields will be
-// deserialized from the Mattermost server configuration in OnConfigurationChange.
+// deserialized from the Antimatter server configuration in OnConfigurationChange.
 //
 // As plugins are inherently concurrent (hooks being called asynchronously), and the plugin
 // configuration can change at any time, access to the configuration must be synchronized. The
@@ -49,7 +49,7 @@ type Configuration struct {
 	ReviewTargetDayType string `json:"reviewtargetdaytype"`
 	// OverdueReviewsChannelID is an optional channel ID for daily alerts when users have overdue review requests.
 	OverdueReviewsChannelID string `json:"overduereviewschannelid"`
-	// DigestServiceUsername is the Mattermost username whose GitHub connection runs the overdue review digest.
+	// DigestServiceUsername is the Antimatter username whose GitHub connection runs the overdue review digest.
 	// When empty, the plugin falls back to the lexicographically-first connected user.
 	DigestServiceUsername string `json:"digestserviceusername"`
 }
@@ -216,7 +216,7 @@ func (p *Plugin) OnConfigurationChange() error {
 
 	configuration := new(Configuration)
 
-	// Load the public configuration fields from the Mattermost server configuration.
+	// Load the public configuration fields from the Antimatter server configuration.
 	err := p.client.Configuration.LoadPluginConfiguration(configuration)
 	if err != nil {
 		return errors.Wrap(err, "failed to load plugin configuration")

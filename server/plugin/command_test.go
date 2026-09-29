@@ -294,7 +294,7 @@ func TestExecuteCommand(t *testing.T) {
 
 		"help command": {
 			commandArgs:    &model.CommandArgs{Command: "/github help", ChannelId: "test-channelID", RootId: "test-rootID", UserId: "test-userID"},
-			expectedMsg:    "###### Mattermost GitHub Plugin - Slash Command Help\n",
+			expectedMsg:    "###### Antimatter GitHub Plugin - Slash Command Help\n",
 			SetupMockStore: func(mks *mocks.MockKvStore) {},
 		},
 	}
@@ -1756,7 +1756,7 @@ func TestHandleHelp(t *testing.T) {
 
 	t.Run("Successfully get help text", func(t *testing.T) {
 		response := p.handleHelp(&plugin.Context{}, &model.CommandArgs{}, []string{}, &GitHubUserInfo{})
-		assert.Contains(t, response, "###### Mattermost GitHub Plugin - Slash Command Help\n")
+		assert.Contains(t, response, "###### Antimatter GitHub Plugin - Slash Command Help\n")
 	})
 }
 

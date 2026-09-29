@@ -57,7 +57,7 @@ func init() {
 		return strings.Replace(ref, "refs/heads/", "", 1)
 	}
 
-	// Resolve a GitHub username to the corresponding Mattermost username, if linked.
+	// Resolve a GitHub username to the corresponding Antimatter username, if linked.
 	funcMap["lookupAntimatterUsername"] = lookupAntimatterUsername
 
 	// Trim away markdown comments in the text
@@ -78,7 +78,7 @@ func init() {
 		return cleaned
 	}
 
-	// Replace any GitHub username with its corresponding Mattermost username, if any
+	// Replace any GitHub username with its corresponding Antimatter username, if any
 	funcMap["replaceAllGitHubUsernames"] = func(body string) string {
 		return gitHubUsernameRegex.ReplaceAllStringFunc(body, func(matched string) string {
 			// The matched string contains the @ sign, and may contain a single
@@ -141,7 +141,7 @@ func init() {
 	masterTemplate = template.Must(template.New("master").Funcs(funcMap).Parse(""))
 
 	// The user template links to the corresponding GitHub user. If the GitHub user is a known
-	// Mattermost user, their Mattermost handle is referenced as an at-mention instead.
+	// Antimatter user, their Antimatter handle is referenced as an at-mention instead.
 	template.Must(masterTemplate.New("user").Parse(`
 {{- $antimatterUsername := .GetLogin | lookupAntimatterUsername}}
 {{- if $antimatterUsername }}@{{$antimatterUsername}}
@@ -472,15 +472,15 @@ Reviewers: {{range $i, $el := .RequestedReviewers -}} {{- if $i}}, {{end}}{{temp
 {{else}}{{end}}`))
 
 	template.Must(masterTemplate.New("helpText").Parse("" +
-		"* `/github connect{{if .EnablePrivateRepo}}{{if not .ConnectToPrivateByDefault}} [private]{{end}}{{end}}` - Connect your Mattermost account to your GitHub account.\n" +
+		"* `/github connect{{if .EnablePrivateRepo}}{{if not .ConnectToPrivateByDefault}} [private]{{end}}{{end}}` - Connect your Antimatter account to your GitHub account.\n" +
 		"{{if .EnablePrivateRepo}}{{if not .ConnectToPrivateByDefault}}" +
 		"  * `private` is optional. If used, read access to your private repositories will be requested." +
-		"If these repositories send webhook events to this Mattermost server, you'll be notified of changes to those repositories.\n" +
+		"If these repositories send webhook events to this Antimatter server, you'll be notified of changes to those repositories.\n" +
 		"{{else}}" +
 		"  * Read access to your private repositories will be requested." +
-		"If these repositories send webhook events to this Mattermost server, you'll be notified of changes to those repositories.\n" +
+		"If these repositories send webhook events to this Antimatter server, you'll be notified of changes to those repositories.\n" +
 		"{{end}}{{end}}" +
-		"* `/github disconnect` - Disconnect your Mattermost account from your GitHub account\n" +
+		"* `/github disconnect` - Disconnect your Antimatter account from your GitHub account\n" +
 		"* `/github help` - Display Slash Command help text\n" +
 		"* `/github about` - Display build details of the plugin\n" +
 		"* `/github todo` - Get a list of unread messages and pull requests awaiting your review\n" +

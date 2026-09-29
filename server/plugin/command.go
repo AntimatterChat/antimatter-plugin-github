@@ -767,7 +767,7 @@ func (p *Plugin) handleHelp(_ *plugin.Context, _ *model.CommandArgs, _ []string,
 		return "Encountered an error posting help text."
 	}
 
-	return "###### Mattermost GitHub Plugin - Slash Command Help\n" + message
+	return "###### Antimatter GitHub Plugin - Slash Command Help\n" + message
 }
 
 func (p *Plugin) handleSettings(_ *plugin.Context, _ *model.CommandArgs, parameters []string, userInfo *GitHubUserInfo) string {
@@ -1158,10 +1158,10 @@ func getAutocompleteData(config *Configuration) *model.AutocompleteData {
 
 	github := model.NewAutocompleteData("github", "[command]", "Available commands: connect, disconnect, todo, subscriptions, issue, default-repo, me, mute, settings, help, about")
 
-	connect := model.NewAutocompleteData("connect", "", "Connect your Mattermost account to your GitHub account")
+	connect := model.NewAutocompleteData("connect", "", "Connect your Antimatter account to your GitHub account")
 	if config.EnablePrivateRepo {
 		if config.ConnectToPrivateByDefault {
-			connect = model.NewAutocompleteData("connect", "", "Connect your Mattermost account to your GitHub account. Read access to your private repositories will be requested")
+			connect = model.NewAutocompleteData("connect", "", "Connect your Antimatter account to your GitHub account. Read access to your private repositories will be requested")
 		} else {
 			private := model.NewAutocompleteData("private", "(optional)", "If used, read access to your private repositories will be requested")
 			connect.AddCommand(private)
@@ -1169,7 +1169,7 @@ func getAutocompleteData(config *Configuration) *model.AutocompleteData {
 	}
 	github.AddCommand(connect)
 
-	disconnect := model.NewAutocompleteData("disconnect", "", "Disconnect your Mattermost account from your GitHub account")
+	disconnect := model.NewAutocompleteData("disconnect", "", "Disconnect your Antimatter account from your GitHub account")
 	github.AddCommand(disconnect)
 
 	todo := model.NewAutocompleteData("todo", "", "Get a list of unread messages and pull requests awaiting your review")
@@ -1306,7 +1306,7 @@ func getAutocompleteData(config *Configuration) *model.AutocompleteData {
 	setup := model.NewAutocompleteData("setup", "[command]", "Available commands: oauth, webhook, announcement")
 	setup.RoleID = model.SystemAdminRoleId
 	setup.AddCommand(model.NewAutocompleteData("oauth", "", "Set up the OAuth2 Application in GitHub"))
-	setup.AddCommand(model.NewAutocompleteData("webhook", "", "Create a webhook from GitHub to Mattermost"))
+	setup.AddCommand(model.NewAutocompleteData("webhook", "", "Create a webhook from GitHub to Antimatter"))
 	setup.AddCommand(model.NewAutocompleteData("announcement", "", "Announce to your team that they can use GitHub integration"))
 	github.AddCommand(setup)
 

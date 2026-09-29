@@ -553,7 +553,7 @@ func TestHandleReviewCommentMentionNotification(t *testing.T) {
 			setup: func(_ *plugintest.API, _ *mocks.MockKvStore) {},
 		},
 		{
-			name:  "Mentioned user not mapped to Mattermost",
+			name:  "Mentioned user not mapped to Antimatter",
 			event: GetMockPullRequestReviewCommentEvent(actionCreated, "mention @otherUser", MockUserLogin),
 			setup: func(_ *plugintest.API, mockKVStore *mocks.MockKvStore) {
 				mockKVStore.EXPECT().Get("otherUser_githubusername", mock.MatchedBy(func(val any) bool {
@@ -620,7 +620,7 @@ func TestHandleReviewCommentAuthorNotification(t *testing.T) {
 			setup: func(_ *plugintest.API, _ *mocks.MockKvStore) {},
 		},
 		{
-			name:  "Author not mapped to Mattermost",
+			name:  "Author not mapped to Antimatter",
 			event: GetMockPullRequestReviewCommentReplyEvent(actionCreated, "body", MockUserLogin, 99),
 			setup: func(_ *plugintest.API, mockKVStore *mocks.MockKvStore) {
 				mockKVStore.EXPECT().Get("issueAuthor_githubusername", mock.MatchedBy(func(val any) bool {

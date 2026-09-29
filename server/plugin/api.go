@@ -488,8 +488,8 @@ func (p *Plugin) completeConnectUserToGitHub(c *Context, w http.ResponseWriter, 
 			c.Log.WithError(err).Warnf("Failed to render help template")
 		}
 
-		message := fmt.Sprintf("#### Welcome to the Mattermost GitHub Plugin!\n"+
-			"You've connected your Mattermost account to [%s](%s) on GitHub. Read about the features of this plugin below:\n\n"+
+		message := fmt.Sprintf("#### Welcome to the Antimatter GitHub Plugin!\n"+
+			"You've connected your Antimatter account to [%s](%s) on GitHub. Read about the features of this plugin below:\n\n"+
 			"##### Daily Reminders\n"+
 			"The first time you log in each day, you'll get a post right here letting you know what messages you need to read and what pull requests are awaiting your review.\n"+
 			"Turn off reminders with `/github settings reminders off`.\n\n"+
@@ -497,7 +497,7 @@ func (p *Plugin) completeConnectUserToGitHub(c *Context, w http.ResponseWriter, 
 			"When someone mentions you, requests your review, comments on or modifies one of your pull requests/issues, or assigns you, you'll get a post here about it.\n"+
 			"Turn off notifications with `/github settings notifications off`.\n\n"+
 			"##### Sidebar Buttons\n"+
-			"Check out the buttons in the left-hand sidebar of Mattermost.\n"+
+			"Check out the buttons in the left-hand sidebar of Antimatter.\n"+
 			"It shows your Open PRs, PRs that are awaiting your review, issues assigned to you, and all your unread messages you have in GitHub. \n"+
 			"* The first button tells you how many pull requests you have submitted.\n"+
 			"* The second shows the number of PR that are awaiting your review.\n"+
@@ -1794,7 +1794,7 @@ func (p *Plugin) createIssue(c *UserContext, w http.ResponseWriter, r *http.Requ
 			return
 		}
 
-		amMessage = fmt.Sprintf("_Issue created from a [Mattermost message](%v) *by %s*._", permalink, username)
+		amMessage = fmt.Sprintf("_Issue created from a [Antimatter message](%v) *by %s*._", permalink, username)
 	}
 
 	ghIssue := &github.IssueRequest{

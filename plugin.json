@@ -1,9 +1,9 @@
 {
     "id": "github",
     "name": "GitHub",
-    "description": "GitHub plugin for Mattermost.",
-    "homepage_url": "https://github.com/mattermost/mattermost-plugin-github",
-    "support_url": "https://github.com/mattermost/mattermost-plugin-github/issues",
+    "description": "GitHub plugin for Antimatter.",
+    "homepage_url": "https://github.com/antimatterchat/antimatter-plugin-github",
+    "support_url": "https://github.com/antimatterchat/antimatter-plugin-github/issues",
     "icon_path": "assets/icon.svg",
     "min_server_version": "12.0.0",
     "server": {
@@ -19,13 +19,13 @@
         "bundle_path": "webapp/dist/main.js"
     },
     "settings_schema": {
-        "header": "The GitHub plugin for Mattermost allows users to subscribe to notifications, stay up-to-date with reviews, see the status of pull requests at a glance, and other common GitHub actions - directly from Mattermost. \n \n Instructions for setup are [available here](https://www.mattermost.com/pl/default-github-plugin#configuration).",
+        "header": "The GitHub plugin for Antimatter allows users to subscribe to notifications, stay up-to-date with reviews, see the status of pull requests at a glance, and other common GitHub actions - directly from Antimatter. \n \n Instructions for setup are [available here](https://docs.antimatter.example/pl/default-github-plugin#configuration).",
         "settings": [
             {
                 "key": "UsePreregisteredApplication",
                 "display_name": "Use Preregistered OAuth Application:",
                 "type": "bool",
-                "help_text": "Set to false if using GitHub Enterprise. When true, instructs the plugin to use the preregistered GitHub OAuth application - application registration steps can be skipped. Requires [Chimera Proxy](https://github.com/mattermost/chimera) URL to be configured for the server. Cannot be used with GitHub enterprise.",
+                "help_text": "Set to false if using GitHub Enterprise. When true, instructs the plugin to use the preregistered GitHub OAuth application - application registration steps can be skipped. Requires Chimera Proxy URL to be configured for the server. Cannot be used with GitHub enterprise.",
                 "default": false,
                 "hosting": "cloud"
             },
@@ -167,11 +167,11 @@
             },
             {
                 "key": "DigestServiceUsername",
-                "display_name": "Digest service user (Mattermost username):",
+                "display_name": "Digest service user (Antimatter username):",
                 "type": "text",
-                "help_text": "Optional. Mattermost @username whose GitHub connection runs the overdue review digest (org-wide GraphQL and team lookups). Use a stable account that will stay connected to GitHub, e.g. a team lead or bot user. When empty, the plugin uses the lexicographically-first connected user, which can be hard to predict."
+                "help_text": "Optional. Antimatter @username whose GitHub connection runs the overdue review digest (org-wide GraphQL and team lookups). Use a stable account that will stay connected to GitHub, e.g. a team lead or bot user. When empty, the plugin uses the lexicographically-first connected user, which can be hard to predict."
             }
         ],
-        "footer": "* To report an issue, make a suggestion or a contribution, [check the repository](https://github.com/mattermost/mattermost-plugin-github)."
+        "footer": "* To report an issue, make a suggestion or a contribution, [check the repository](https://github.com/antimatterchat/antimatter-plugin-github)."
     }
 }

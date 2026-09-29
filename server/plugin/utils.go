@@ -468,7 +468,7 @@ func escapeMarkdownLinkText(s string) string {
 	return r.Replace(s)
 }
 
-// reviewSLAMarkdown returns a Markdown SLA suffix for Mattermost posts and whether the review is overdue.
+// reviewSLAMarkdown returns a Markdown SLA suffix for Antimatter posts and whether the review is overdue.
 func reviewSLAMarkdown(createdAt github.Timestamp, targetDays int, now time.Time, dayType string) (suffix string, overdue bool) {
 	if targetDays <= 0 || createdAt.IsZero() {
 		return "", false

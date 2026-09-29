@@ -24,7 +24,7 @@ const (
 	// slaDigestDayKVKey stores the last local calendar day (server timezone) we posted or skipped the digest.
 	slaDigestDayKVKey = "github_sla_digest_local_day"
 	slaDigestMutexKey = "github_sla_digest_mutex"
-	// slaDigestMaxMessageRunes caps the channel digest below Mattermost post limits (64K runes).
+	// slaDigestMaxMessageRunes caps the channel digest below Antimatter post limits (64K runes).
 	slaDigestMaxMessageRunes = 64000
 	slaDigestClippedMarker   = "\n\n_This digest was clipped due to message size limits._"
 )
@@ -35,7 +35,7 @@ const (
 type slaDigestEntry struct {
 	DaysOverdue     int
 	ReviewerDisplay string // e.g. "@harrison (hmhealey)" or "(not connected) - hmhealey"
-	Body            string // e.g. "mattermost/mattermost - [Fix race condition](url)"
+	Body            string // e.g. "antimatter/antimatter - [Fix race condition](url)"
 }
 
 // maybePostDailyOverdueSLADigest posts one aggregated message per local calendar day to the
@@ -106,7 +106,7 @@ func (p *Plugin) maybePostDailyOverdueSLADigest(ctx context.Context) {
 }
 
 // resolveReviewerDisplayName turns a GitHub login into the digest's reviewer column.
-// Connected users get an actual Mattermost @-mention so the post notifies them; unconnected
+// Connected users get an actual Antimatter @-mention so the post notifies them; unconnected
 // users render as "(not connected) - <githublogin>" so admins can see who is missing.
 func (p *Plugin) resolveReviewerDisplayName(githubLogin string) string {
 	if githubLogin == "" {
@@ -120,7 +120,7 @@ func (p *Plugin) resolveReviewerDisplayName(githubLogin string) string {
 }
 
 // pickServiceGitHubUser returns the connected user the digest uses as a service caller for
-// org-wide GitHub queries. When DigestServiceUsername is set, only that Mattermost user is
+// org-wide GitHub queries. When DigestServiceUsername is set, only that Antimatter user is
 // considered; otherwise keys are sorted before iteration so the choice is deterministic
 // across runs (and across cluster nodes).
 //
@@ -147,7 +147,7 @@ func (p *Plugin) pickServiceGitHubUser(ctx context.Context) *GitHubUserInfo {
 			return nil
 		}
 		p.client.Log.Info("SLA digest using configured service user",
-			"mattermost_username", configured,
+			"antimatter_username", configured,
 			"github_username", ghInfo.GitHubUsername,
 			"user_id", user.Id)
 		return ghInfo

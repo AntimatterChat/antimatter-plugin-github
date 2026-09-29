@@ -105,7 +105,7 @@ func (p *Plugin) NewFlowManager() (*FlowManager, error) {
 	webhookFlow.WithSteps(
 		fm.stepWebhookQuestion(),
 		flow.NewStep(stepWebhookConfirmation).
-			WithText("Use `/github subscriptions add` to subscribe any Mattermost channel to your GitHub repository. [Learn more](https://github.com/mattermost/mattermost-plugin-github#slash-commands)").
+			WithText("Use `/github subscriptions add` to subscribe any Antimatter channel to your GitHub repository. [Learn more](https://github.com/antimatterchat/antimatter-plugin-github#slash-commands)").
 			Terminal(),
 
 		fm.stepCancel("setup webhook"),
@@ -258,7 +258,7 @@ func (fm *FlowManager) StartOauthWizard(userID string) error {
 }
 
 func (fm *FlowManager) stepWelcome() flow.Step {
-	welcomePretext := ":wave: Welcome to your GitHub integration! [Learn more](https://github.com/mattermost/mattermost-plugin-github#readme)"
+	welcomePretext := ":wave: Welcome to your GitHub integration! [Learn more](https://github.com/antimatterchat/antimatter-plugin-github#readme)"
 
 	welcomeText := `
 {{- if .UsePreregisteredApplication -}}
@@ -460,12 +460,12 @@ func (fm *FlowManager) stepOAuthInfo() flow.Step {
 
 	oauthPretext := `
 ##### :white_check_mark: Step 1: Register an OAuth Application in GitHub
-You must first register the Mattermost GitHub Plugin as an authorized OAuth app.`
+You must first register the Antimatter GitHub Plugin as an authorized OAuth app.`
 	oauthMessage := fmt.Sprintf(""+
 		"1. In a browser, go to {{ .BaseURL}}settings/applications/new.\n"+
 		"2. Set the following values:\n"+
-		"	- Application name: `Mattermost GitHub Plugin - <your company name>`\n"+
-		"	- Homepage URL: `https://github.com/mattermost/mattermost-plugin-github`\n"+
+		"	- Application name: `Antimatter GitHub Plugin - <your company name>`\n"+
+		"	- Homepage URL: `https://github.com/antimatterchat/antimatter-plugin-github`\n"+
 		"	- Authorization callback URL: `%s`\n"+
 		"3. Select **Register application**\n"+
 		"4. Select **Generate a new client secret**.\n"+
@@ -594,7 +594,7 @@ func (fm *FlowManager) StartWebhookWizard(userID string) error {
 
 func (fm *FlowManager) stepWebhookQuestion() flow.Step {
 	questionPretext := `##### :white_check_mark: Step {{ if .UsePreregisteredApplication }}2{{ else }}3{{ end }}: Create a Webhook in GitHub
-The final setup step requires a Mattermost System Admin to create a webhook for each GitHub organization or repository to receive notifications for, or want to subscribe to.`
+The final setup step requires an Antimatter System Admin to create a webhook for each GitHub organization or repository to receive notifications for, or want to subscribe to.`
 	return flow.NewStep(stepWebhookQuestion).
 		WithText("Do you want to create a webhook?").
 		WithPretext(questionPretext).
@@ -611,7 +611,7 @@ The final setup step requires a Mattermost System Admin to create a webhook for 
 						Type:        "text",
 						SubType:     "text",
 						Placeholder: "Enter GitHub repository or organization name",
-						HelpText:    "Specify the GitHub repository or organization to connect to Mattermost. For example, mattermost/mattermost-server.",
+						HelpText:    "Specify the GitHub repository or organization to connect to Antimatter. For example, antimatterchat/antimatter-plugin-github.",
 					},
 				},
 			},
@@ -730,7 +730,7 @@ func (fm *FlowManager) submitWebhook(f *flow.Flow, submitted map[string]any) (fl
 }
 
 func (fm *FlowManager) stepWebhookWarning() flow.Step {
-	warnText := "The GitHub plugin uses a webhook to connect a GitHub account to Mattermost to listen for incoming GitHub events. " +
+	warnText := "The GitHub plugin uses a webhook to connect a GitHub account to Antimatter to listen for incoming GitHub events. " +
 		"You can't subscribe a channel to a repository for notifications until webhooks are configured.\n" +
 		"Restart setup later by running `/github setup webhook`"
 
@@ -742,8 +742,8 @@ func (fm *FlowManager) stepWebhookWarning() flow.Step {
 
 func (fm *FlowManager) stepWebhookConfirmation() flow.Step {
 	return flow.NewStep(stepWebhookConfirmation).
-		WithTitle("Success! :tada: You've successfully set up your Mattermost GitHub integration! ").
-		WithText("Use `/github subscriptions add` to subscribe any Mattermost channel to your GitHub repository. [Learn more](https://github.com/mattermost/mattermost-plugin-github#slash-commands)").
+		WithTitle("Success! :tada: You've successfully set up your Antimatter GitHub integration! ").
+		WithText("Use `/github subscriptions add` to subscribe any Antimatter channel to your GitHub repository. [Learn more](https://github.com/antimatterchat/antimatter-plugin-github#slash-commands)").
 		Next("")
 }
 
@@ -761,7 +761,7 @@ func (fm *FlowManager) StartAnnouncementWizard(userID string) error {
 func (fm *FlowManager) stepAnnouncementQuestion() flow.Step {
 	defaultMessage := "Hi team,\n" +
 		"\n" +
-		"We've set up the Mattermost GitHub plugin to enable notifications from GitHub in Mattermost. To get started, run the `/github connect` slash command from any channel within Mattermost to connect that channel with GitHub. See the [documentation](https://github.com/mattermost/mattermost-plugin-github/blob/master/README.md#slash-commands) for details on using the GitHub plugin."
+		"We've set up the Antimatter GitHub plugin to enable notifications from GitHub in Antimatter. To get started, run the `/github connect` slash command from any channel within Antimatter to connect that channel with GitHub. See the [documentation](https://github.com/antimatterchat/antimatter-plugin-github/blob/master/README.md#slash-commands) for details on using the GitHub plugin."
 
 	return flow.NewStep(stepAnnouncementQuestion).
 		WithText("Want to let your team know?").

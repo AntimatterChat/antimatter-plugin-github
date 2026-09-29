@@ -715,7 +715,7 @@ func (p *Plugin) getGitHubToUserIDMapping(githubUsername string) string {
 	return string(data)
 }
 
-// getGitHubToUsernameMapping maps a GitHub username to the corresponding Mattermost username, if any.
+// getGitHubToUsernameMapping maps a GitHub username to the corresponding Antimatter username, if any.
 func (p *Plugin) getGitHubToUsernameMapping(githubUsername string) string {
 	user, _ := p.client.User.Get(p.getGitHubToUserIDMapping(githubUsername))
 	if user == nil {
@@ -1323,9 +1323,9 @@ func (p *Plugin) sendRefreshEvent(userID string) {
 	)
 }
 
-// getUsername returns the GitHub username for a given Mattermost user,
+// getUsername returns the GitHub username for a given Antimatter user,
 // if the user is connected to GitHub via this plugin.
-// Otherwise it return the Mattermost username. It will be escaped via backticks.
+// Otherwise it return the Antimatter username. It will be escaped via backticks.
 func (p *Plugin) getUsername(amUserID string) (string, error) {
 	info, apiEr := p.getGitHubUserInfo(amUserID)
 	if apiEr != nil {
