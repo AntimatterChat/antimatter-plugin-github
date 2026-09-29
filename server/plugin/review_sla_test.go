@@ -14,11 +14,11 @@ import (
 )
 
 func TestReviewSLAStartKeyStable(t *testing.T) {
-	k1 := reviewSLAStartKey("Mattermost", "mattermost", 12345, "octocat")
-	k2 := reviewSLAStartKey("mattermost", "mattermost", 12345, "OctoCat")
+	k1 := reviewSLAStartKey("Antimatter", "antimatter", 12345, "octocat")
+	k2 := reviewSLAStartKey("antimatter", "antimatter", 12345, "OctoCat")
 	assert.Equal(t, k1, k2, "key should be case-insensitive")
 
-	k3 := reviewSLAStartKey("Mattermost", "mattermost", 99999, "octocat")
+	k3 := reviewSLAStartKey("Antimatter", "antimatter", 99999, "octocat")
 	assert.NotEqual(t, k1, k3)
 }
 
@@ -43,11 +43,11 @@ func TestPrRefFromIssue(t *testing.T) {
 	t.Run("falls back to HTMLURL parsing when Repository is missing", func(t *testing.T) {
 		pr := &github.Issue{
 			Number:    github.Int(7),
-			HTMLURL:   github.String("https://github.com/mattermost/plugin-github/pull/7"),
+			HTMLURL:   github.String("https://github.com/antimatter/plugin-github/pull/7"),
 			CreatedAt: &createdAt,
 		}
 		got := prRefFromIssue(pr, baseURL)
-		assert.Equal(t, prRef{Owner: "mattermost", Repo: "plugin-github", Number: 7, CreatedAt: createdAt}, got)
+		assert.Equal(t, prRef{Owner: "antimatter", Repo: "plugin-github", Number: 7, CreatedAt: createdAt}, got)
 	})
 }
 
@@ -154,8 +154,8 @@ func TestFindEarliestSurvivingTeamRequestTime(t *testing.T) {
 		}
 	}
 
-	core := graphql.DigestTeamRef{Org: "mattermost", Slug: "core"}
-	platform := graphql.DigestTeamRef{Org: "mattermost", Slug: "platform"}
+	core := graphql.DigestTeamRef{Org: "antimatter", Slug: "core"}
+	platform := graphql.DigestTeamRef{Org: "antimatter", Slug: "platform"}
 
 	t.Run("empty teams returns zero", func(t *testing.T) {
 		got := findEarliestSurvivingTeamRequestTime(nil, nil)

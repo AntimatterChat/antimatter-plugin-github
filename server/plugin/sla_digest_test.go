@@ -33,20 +33,20 @@ func TestFormatChannelOverduePRBody(t *testing.T) {
 	t.Run("renders owner/repo and a markdown-linked title", func(t *testing.T) {
 		body := formatChannelOverduePRBody(
 			"Fix race condition",
-			"https://github.com/mattermost/mattermost/pull/12345",
+			"https://github.com/antimatter/antimatter/pull/12345",
 			baseURL,
 		)
-		assert.Equal(t, "mattermost/mattermost - [Fix race condition](https://github.com/mattermost/mattermost/pull/12345)", body)
+		assert.Equal(t, "antimatter/antimatter - [Fix race condition](https://github.com/antimatter/antimatter/pull/12345)", body)
 	})
 
 	t.Run("escapes closing brackets in the title so the link does not terminate early", func(t *testing.T) {
 		body := formatChannelOverduePRBody(
 			"[MM-12345] Fix [thing]",
-			"https://github.com/mattermost/mattermost/pull/1",
+			"https://github.com/antimatter/antimatter/pull/1",
 			baseURL,
 		)
 		// Only `]` needs escaping inside a markdown link's display text; `[` is allowed.
-		assert.Contains(t, body, `[[MM-12345\] Fix [thing\]](https://github.com/mattermost/mattermost/pull/1)`)
+		assert.Contains(t, body, `[[MM-12345\] Fix [thing\]](https://github.com/antimatter/antimatter/pull/1)`)
 	})
 
 	t.Run("falls back to raw URL as the repo display when owner/repo cannot be parsed", func(t *testing.T) {
@@ -62,10 +62,10 @@ func TestFormatChannelOverduePRBody(t *testing.T) {
 		title := strings.Repeat("a", 250)
 		body := formatChannelOverduePRBody(
 			title,
-			"https://github.com/mattermost/mattermost/pull/1",
+			"https://github.com/antimatter/antimatter/pull/1",
 			baseURL,
 		)
-		assert.Contains(t, body, "...](https://github.com/mattermost/mattermost/pull/1)")
+		assert.Contains(t, body, "...](https://github.com/antimatter/antimatter/pull/1)")
 		// Title text inside the link should not exceed 200 'a's followed by the ellipsis.
 		assert.NotContains(t, body, strings.Repeat("a", 201))
 	})
@@ -286,7 +286,7 @@ func TestGatherReviewersForPR(t *testing.T) {
 	})
 
 	t.Run("expands team references and tags reviewer with the originating team", func(t *testing.T) {
-		core := graphql.DigestTeamRef{Org: "mattermost", Slug: "core"}
+		core := graphql.DigestTeamRef{Org: "antimatter", Slug: "core"}
 		pr := graphql.DigestPR{
 			RequestedUsers: []string{"alice"},
 			RequestedTeams: []graphql.DigestTeamRef{core},
@@ -305,7 +305,7 @@ func TestGatherReviewersForPR(t *testing.T) {
 	})
 
 	t.Run("user in both direct list and team list is deduplicated to one entry retaining team origin", func(t *testing.T) {
-		core := graphql.DigestTeamRef{Org: "mattermost", Slug: "core"}
+		core := graphql.DigestTeamRef{Org: "antimatter", Slug: "core"}
 		pr := graphql.DigestPR{
 			RequestedUsers: []string{"bob"},
 			RequestedTeams: []graphql.DigestTeamRef{core},
@@ -319,8 +319,8 @@ func TestGatherReviewersForPR(t *testing.T) {
 	})
 
 	t.Run("user requested via two teams accumulates both teams", func(t *testing.T) {
-		core := graphql.DigestTeamRef{Org: "mattermost", Slug: "core"}
-		platform := graphql.DigestTeamRef{Org: "mattermost", Slug: "platform"}
+		core := graphql.DigestTeamRef{Org: "antimatter", Slug: "core"}
+		platform := graphql.DigestTeamRef{Org: "antimatter", Slug: "platform"}
 		pr := graphql.DigestPR{
 			RequestedTeams: []graphql.DigestTeamRef{core, platform},
 		}
@@ -334,7 +334,7 @@ func TestGatherReviewersForPR(t *testing.T) {
 		original := []string{"alice"}
 		pr := graphql.DigestPR{
 			RequestedUsers: original,
-			RequestedTeams: []graphql.DigestTeamRef{{Org: "mattermost", Slug: "core"}},
+			RequestedTeams: []graphql.DigestTeamRef{{Org: "antimatter", Slug: "core"}},
 		}
 		resolver := func(graphql.DigestTeamRef) []string { return []string{"bob"} }
 		_ = gatherReviewersForPR(pr, resolver)
@@ -351,7 +351,7 @@ func TestGatherReviewersForPR(t *testing.T) {
 		// caller, regardless of which code path a bad value comes in on. The GraphQL
 		// layer already filters empty user logins, but resolveTeam is a callback whose
 		// implementation we don't control, so the protection has to apply uniformly.
-		core := graphql.DigestTeamRef{Org: "mattermost", Slug: "core"}
+		core := graphql.DigestTeamRef{Org: "antimatter", Slug: "core"}
 		pr := graphql.DigestPR{
 			RequestedUsers: []string{"", "alice", ""},
 			RequestedTeams: []graphql.DigestTeamRef{core},
@@ -366,7 +366,7 @@ func TestGatherReviewersForPR(t *testing.T) {
 	})
 
 	t.Run("dedupe is case-insensitive on login", func(t *testing.T) {
-		core := graphql.DigestTeamRef{Org: "mattermost", Slug: "core"}
+		core := graphql.DigestTeamRef{Org: "antimatter", Slug: "core"}
 		pr := graphql.DigestPR{
 			RequestedUsers: []string{"Bob"},
 			RequestedTeams: []graphql.DigestTeamRef{core},
@@ -458,7 +458,7 @@ func TestPickServiceGitHubUser_NoConnectedUsers(t *testing.T) {
 	assert.Nil(t, p.pickServiceGitHubUser(context.Background()))
 }
 
-func TestPickServiceGitHubUser_ConfiguredMattermostUsername(t *testing.T) {
+func TestPickServiceGitHubUser_ConfiguredAntimatterUsername(t *testing.T) {
 	p, mockKvStore, ctrl := setupServiceUserPickTest(t)
 	defer ctrl.Finish()
 
@@ -562,7 +562,7 @@ func TestFetchAllOrgOpenPRs_CanceledContextReturnsNotOK(t *testing.T) {
 	// graphQLClient is intentionally nil: the ctx.Err() check fires before any GraphQL call,
 	// so a nil client must never be dereferenced on the cancellation path. Locks in the
 	// fast-fail-without-network behavior alongside the failure-flag contract.
-	prs, ok := p.fetchAllOrgOpenPRs(ctx, nil, []string{"mattermost"})
+	prs, ok := p.fetchAllOrgOpenPRs(ctx, nil, []string{"antimatter"})
 	assert.Nil(t, prs, "canceled context should not surface partial results")
 	assert.False(t, ok, "canceled context must not be reported as a successful scan")
 }

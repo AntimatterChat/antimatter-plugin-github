@@ -49,11 +49,11 @@ func TestFixGithubNotificationSubjectURL(t *testing.T) {
 		Expected string
 		IssueNum string
 	}{
-		{Text: "https://api.github.com/repos/jwilander/mattermost-webapp/issues/123", Expected: "https://github.com/jwilander/mattermost-webapp/issues/123"},
-		{Text: "https://api.github.com/repos/jwilander/mattermost-webapp/pulls/123", Expected: "https://github.com/jwilander/mattermost-webapp/pull/123"},
-		{Text: "https://enterprise.github.com/api/v3/jwilander/mattermost-webapp/issues/123", Expected: "https://enterprise.github.com/jwilander/mattermost-webapp/issues/123"},
-		{Text: "https://enterprise.github.com/api/v3/jwilander/mattermost-webapp/pull/123", Expected: "https://enterprise.github.com/jwilander/mattermost-webapp/pull/123"},
-		{Text: "https://api.github.com/repos/mattermost/mattermost-server/commits/cc6c385d3e8903546fc6fc856bf468ad09b70913", Expected: "https://github.com/mattermost/mattermost-server/commit/cc6c385d3e8903546fc6fc856bf468ad09b70913"},
+		{Text: "https://api.github.com/repos/jwilander/antimatter-webapp/issues/123", Expected: "https://github.com/jwilander/antimatter-webapp/issues/123"},
+		{Text: "https://api.github.com/repos/jwilander/antimatter-webapp/pulls/123", Expected: "https://github.com/jwilander/antimatter-webapp/pull/123"},
+		{Text: "https://enterprise.github.com/api/v3/jwilander/antimatter-webapp/issues/123", Expected: "https://enterprise.github.com/jwilander/antimatter-webapp/issues/123"},
+		{Text: "https://enterprise.github.com/api/v3/jwilander/antimatter-webapp/pull/123", Expected: "https://enterprise.github.com/jwilander/antimatter-webapp/pull/123"},
+		{Text: "https://api.github.com/repos/antimatter/antimatter-server/commits/cc6c385d3e8903546fc6fc856bf468ad09b70913", Expected: "https://github.com/antimatter/antimatter-server/commit/cc6c385d3e8903546fc6fc856bf468ad09b70913"},
 		{Text: "https://api.github.com/repos/user/rate_my_cakes/issues/comments/655139214", Expected: "https://github.com/user/rate_my_cakes/issues/4#issuecomment-655139214", IssueNum: "4"},
 	}
 
@@ -69,17 +69,17 @@ func TestParseOwnerAndRepo(t *testing.T) {
 		ExpectedOwner string
 		ExpectedRepo  string
 	}{
-		{Full: "mattermost", BaseURL: "", ExpectedOwner: "mattermost", ExpectedRepo: ""},
-		{Full: "mattermost", BaseURL: "https://github.com/", ExpectedOwner: "mattermost", ExpectedRepo: ""},
-		{Full: "https://example.org/mattermost", BaseURL: "https://example.org/", ExpectedOwner: "mattermost", ExpectedRepo: ""},
-		{Full: "https://github.com/mattermost", BaseURL: "https://github.com/", ExpectedOwner: "mattermost", ExpectedRepo: ""},
-		{Full: "mattermost/mattermost-server", BaseURL: "", ExpectedOwner: "mattermost", ExpectedRepo: "mattermost-server"},
-		{Full: "mattermost/mattermost-server", BaseURL: "https://github.com/", ExpectedOwner: "mattermost", ExpectedRepo: "mattermost-server"},
-		{Full: "https://example.org/mattermost/mattermost-server", BaseURL: "https://example.org/", ExpectedOwner: "mattermost", ExpectedRepo: "mattermost-server"},
-		{Full: "https://github.com/mattermost/mattermost-server", BaseURL: "https://github.com/", ExpectedOwner: "mattermost", ExpectedRepo: "mattermost-server"},
+		{Full: "antimatter", BaseURL: "", ExpectedOwner: "antimatter", ExpectedRepo: ""},
+		{Full: "antimatter", BaseURL: "https://github.com/", ExpectedOwner: "antimatter", ExpectedRepo: ""},
+		{Full: "https://example.org/antimatter", BaseURL: "https://example.org/", ExpectedOwner: "antimatter", ExpectedRepo: ""},
+		{Full: "https://github.com/antimatter", BaseURL: "https://github.com/", ExpectedOwner: "antimatter", ExpectedRepo: ""},
+		{Full: "antimatter/antimatter-server", BaseURL: "", ExpectedOwner: "antimatter", ExpectedRepo: "antimatter-server"},
+		{Full: "antimatter/antimatter-server", BaseURL: "https://github.com/", ExpectedOwner: "antimatter", ExpectedRepo: "antimatter-server"},
+		{Full: "https://example.org/antimatter/antimatter-server", BaseURL: "https://example.org/", ExpectedOwner: "antimatter", ExpectedRepo: "antimatter-server"},
+		{Full: "https://github.com/antimatter/antimatter-server", BaseURL: "https://github.com/", ExpectedOwner: "antimatter", ExpectedRepo: "antimatter-server"},
 		{Full: "", BaseURL: "", ExpectedOwner: "", ExpectedRepo: ""},
-		{Full: "mattermost/mattermost/invalid_repo_url", BaseURL: "", ExpectedOwner: "mattermost", ExpectedRepo: "mattermost"},
-		{Full: "https://github.com/mattermost/mattermost/invalid_repo_url", BaseURL: "https://github.com/", ExpectedOwner: "mattermost", ExpectedRepo: "mattermost"},
+		{Full: "antimatter/antimatter/invalid_repo_url", BaseURL: "", ExpectedOwner: "antimatter", ExpectedRepo: "antimatter"},
+		{Full: "https://github.com/antimatter/antimatter/invalid_repo_url", BaseURL: "https://github.com/", ExpectedOwner: "antimatter", ExpectedRepo: "antimatter"},
 	}
 
 	for i, tc := range tcs {
@@ -288,21 +288,21 @@ func TestGetToDoDisplayText(t *testing.T) {
 			name: "title shorter than threshold, single-word repo name & empty notification type",
 			in: input{
 				"Issue title with less than 80 characters",
-				"https://github.com/mattermost/repo/issues/42",
+				"https://github.com/antimatter/repo/issues/42",
 				"",
 				nil,
 			},
-			want: "* [mattermost/repo](https://github.com/mattermost/repo) : [Issue title with less than 80 characters](https://github.com/mattermost/repo/issues/42)\n",
+			want: "* [antimatter/repo](https://github.com/antimatter/repo) : [Issue title with less than 80 characters](https://github.com/antimatter/repo/issues/42)\n",
 		},
 		{
 			name: "title longer than threshold, multi-word repo name & Issue notification type",
 			in: input{
 				"This is an issue title which has with more than 80 characters and is completely random",
-				"https://github.com/mattermost/mattermost-plugin-github/issues/42",
+				"https://github.com/antimatter/antimatter-plugin-github/issues/42",
 				"Issue",
 				nil,
 			},
-			want: "* [mattermost/...github](https://github.com/mattermost/mattermost-plugin-github) Issue : [This is an issue title which has with more than 80 characters and is completely...](https://github.com/mattermost/mattermost-plugin-github/issues/42)\n",
+			want: "* [antimatter/...github](https://github.com/antimatter/antimatter-plugin-github) Issue : [This is an issue title which has with more than 80 characters and is completely...](https://github.com/antimatter/antimatter-plugin-github/issues/42)\n",
 		},
 		{
 			name: "title longer than threshold, multi-word repo name & Issue notification type",
@@ -311,14 +311,14 @@ func TestGetToDoDisplayText(t *testing.T) {
 				"",
 				"Discussion",
 				&github.Repository{
-					HTMLURL: model.NewPointer("https://github.com/mattermost/mattermost-plugin-github"),
+					HTMLURL: model.NewPointer("https://github.com/antimatter/antimatter-plugin-github"),
 					Owner: &github.User{
-						Login: model.NewPointer("mattermost"),
+						Login: model.NewPointer("antimatter"),
 					},
-					Name: model.NewPointer("mattermost-plugin-github"),
+					Name: model.NewPointer("antimatter-plugin-github"),
 				},
 			},
-			want: "* [mattermost/...github](https://github.com/mattermost/mattermost-plugin-github) Discussion : Test discussion title!\n",
+			want: "* [antimatter/...github](https://github.com/antimatter/antimatter-plugin-github) Discussion : Test discussion title!\n",
 		},
 	}
 
