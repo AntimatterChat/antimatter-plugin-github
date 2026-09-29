@@ -5,7 +5,7 @@ export enum ExpiryAlgorithms {
 }
 
 export type OAuthServerOptions = {
-    mattermostSiteURL: string;
+    antimatterSiteURL: string;
     pluginId: string;
     mockOAuthAccessToken: string;
     authorizeURLPrefix: string;
@@ -13,7 +13,7 @@ export type OAuthServerOptions = {
 }
 
 export const makeOAuthServer = ({
-    mattermostSiteURL,
+    antimatterSiteURL,
     pluginId,
     mockOAuthAccessToken,
     authorizeURLPrefix,
@@ -34,7 +34,7 @@ export const makeOAuthServer = ({
 
     oauthRouter.get('/authorize', (req, res) => {
         const query = req.url.split('?')[1];
-        res.redirect(`${mattermostSiteURL}/plugins/${pluginId}/oauth/complete?${query}&code=1234`);
+        res.redirect(`${antimatterSiteURL}/plugins/${pluginId}/oauth/complete?${query}&code=1234`);
     });
 
     oauthRouter.post('/access_token', (req, res) => {

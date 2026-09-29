@@ -16,12 +16,12 @@ export const runOAuthServer = async () => {
     const defaultAuthorizePrefix = '/login/oauth'; // Used by GitHub
     const authorizeURLPrefix = process.env.OAUTH_AUTHORIZE_URL_PREFIX || defaultAuthorizePrefix;
 
-    const mattermostSiteURL = process.env.MM_SERVICESETTINGS_SITEURL || 'http://localhost:8065';
+    const antimatterSiteURL = process.env.MM_SERVICESETTINGS_SITEURL || 'http://localhost:8065';
     const pluginId = process.env.AM_PLUGIN_ID || process.env.MM_PLUGIN_ID || 'github';
 
     const app = makeOAuthServer({
         authorizeURLPrefix,
-        mattermostSiteURL,
+        antimatterSiteURL,
         mockOAuthAccessToken,
         pluginId,
         expiryAlgorithm: ExpiryAlgorithms.NO_EXPIRY,

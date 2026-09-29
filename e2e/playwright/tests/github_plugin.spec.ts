@@ -109,7 +109,7 @@ export default {
             locatorId = getPostMessageLocatorId(postId);
 
             text = await page.locator(locatorId).innerText();
-            expect(text).toContain('Welcome to the Mattermost GitHub Plugin!');
+            expect(text).toContain('Welcome to the Antimatter GitHub Plugin!');
         });
     },
     disconnect: () => {

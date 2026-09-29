@@ -15,7 +15,7 @@ import {
     getPostAuthor,
 } from '../../support/components/post';
 
-const mmGithubHandle = 'MM-Github-Plugin';
+const amGithubHandle = 'MM-Github-Plugin';
 
 export default {
     connected: () => {
@@ -50,7 +50,7 @@ export default {
                 await expect(post.container.getByText('You are connected to Github as')).toBeVisible();
 
                 // * check username
-                await expect(post.container.getByRole('link', {name: mmGithubHandle})).toBeVisible();
+                await expect(post.container.getByRole('link', {name: amGithubHandle})).toBeVisible();
 
                 // * check profile image
                 await expect(post.container.getByRole('heading').locator('img')).toBeVisible();

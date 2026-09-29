@@ -14,5 +14,5 @@ cd ../e2e-tests/playwright
 npm i
 npx playwright install --with-deps
 
-cd ../../../mattermost-plugin-github/e2e/playwright
+cd ../../../antimatter-plugin-github/e2e/playwright
 npm i

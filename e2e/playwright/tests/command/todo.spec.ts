@@ -51,7 +51,7 @@ export default {
                 await expect(todo.getTitle(GithubRHSCategory.UNREAD)).toBeVisible();
 
                 // * Assert that description are there for each section
-                // Singular/plurals are not taken into account: ticket separated at https://mattermost.atlassian.net/browse/MM-52416
+                // Singular/plurals are not taken into account: ticket separated at MM-52416
                 // Counters may vary and should be explicitely changed once the test accounts are set
                 await expect(todo.getDesc(GithubRHSCategory.OPEN_PR)).toHaveText('You have 1 open pull requests:');
                 await expect(todo.getDesc(GithubRHSCategory.ASSIGNMENTS)).toHaveText('You have 19 assignments:');

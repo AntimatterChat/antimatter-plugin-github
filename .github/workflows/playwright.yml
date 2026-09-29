@@ -89,7 +89,7 @@ jobs:
       DASHBOARD_ENABLE: false
       FULL_REPORT: false
       MM_SERVICESETTINGS_SITEURL: http://localhost:8065
-      MM_ADMIN_EMAIL: sysadmin@sample.mattermost.com
+      MM_ADMIN_EMAIL: sysadmin@sample.antimatter.example
       MM_ADMIN_USERNAME: sysadmin
       MM_ADMIN_PASSWORD: Sys@dmin-sample1
       TEST_DATABASE_URL: postgres://mmuser:mostest@localhost:5432/mattermost_test
