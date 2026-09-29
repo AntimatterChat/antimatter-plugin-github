@@ -1,17 +1,17 @@
-# Mattermost GitHub Plugin
+# Antimatter GitHub Plugin
 
-[![Build Status](https://img.shields.io/circleci/project/github/mattermost/mattermost-plugin-github/master.svg)](https://circleci.com/gh/mattermost/mattermost-plugin-github)
-[![Code Coverage](https://img.shields.io/codecov/c/github/mattermost/mattermost-plugin-github/master.svg)](https://codecov.io/gh/mattermost/mattermost-plugin-github)
-[![Release](https://img.shields.io/github/v/release/mattermost/mattermost-plugin-github)](https://github.com/mattermost/mattermost-plugin-github/releases/latest)
-[![HW](https://img.shields.io/github/issues/mattermost/mattermost-plugin-github/Up%20For%20Grabs?color=dark%20green&label=Help%20Wanted)](https://github.com/mattermost/mattermost-plugin-github/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22Up+For+Grabs%22+label%3A%22Help+Wanted%22)
+[![Build Status](https://img.shields.io/circleci/project/github/antimatterchat/antimatter-plugin-github/master.svg)](https://circleci.com/gh/antimatterchat/antimatter-plugin-github)
+[![Code Coverage](https://img.shields.io/codecov/c/github/antimatterchat/antimatter-plugin-github/master.svg)](https://codecov.io/gh/antimatterchat/antimatter-plugin-github)
+[![Release](https://img.shields.io/github/v/release/antimatterchat/antimatter-plugin-github)](https://github.com/antimatterchat/antimatter-plugin-github/releases/latest)
+[![HW](https://img.shields.io/github/issues/antimatterchat/antimatter-plugin-github/Up%20For%20Grabs?color=dark%20green&label=Help%20Wanted)](https://github.com/antimatterchat/antimatter-plugin-github/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22Up+For+Grabs%22+label%3A%22Help+Wanted%22)
 
-A GitHub plugin for Mattermost. Supports GitHub SaaS and Enterprise versions.
+A GitHub plugin for Antimatter. Supports GitHub SaaS and Enterprise versions.
 
-See the [Mattermost Product Documentation](https://docs.mattermost.com/integrate/github-interoperability.html) for details on installing, configuring, enabling, and using this Mattermost integration.
+See the [Antimatter Product Documentation](https://docs.antimatter.example/integrate/github-interoperability.html) for details on installing, configuring, enabling, and using this Antimatter integration.
 
 ## Development
 
-This plugin contains both a server and web app portions. Read our documentation about the [Developer Workflow](https://developers.mattermost.com/integrate/plugins/developer-workflow/) and [Developer Setup](https://developers.mattermost.com/integrate/plugins/developer-setup/) for more information about developing and extending plugins.
+This plugin contains both a server and web app portions. Read our documentation about the [Developer Workflow](https://docs.antimatter.example/integrate/plugins/developer-workflow/) and [Developer Setup](https://docs.antimatter.example/integrate/plugins/developer-setup/) for more information about developing and extending plugins.
 
 ### Releasing new versions
 
@@ -68,4 +68,4 @@ In order to get your environment set up to run [Playwright](https://playwright.d
 
 ### React 19 compatibility
 
-This plugin requires Mattermost 12.0 or later with the MM-70687 host JSX runtime exports. Webpack externalizes React, ReactDOM (including `react-dom/client`), and both JSX runtimes to the host globals. These mappings also cover runtime imports from dependencies. Rebuild the plugin after changing its configuration.
+This plugin requires Antimatter 12.0 or later with the MM-70687 host JSX runtime exports. Webpack externalizes React, ReactDOM (including `react-dom/client`), and both JSX runtimes to the host globals. These mappings also cover runtime imports from dependencies. Rebuild the plugin after changing its configuration.
