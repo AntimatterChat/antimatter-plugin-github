@@ -7,7 +7,7 @@
 
 A GitHub plugin for Antimatter. Supports GitHub SaaS and Enterprise versions.
 
-See the [Antimatter Product Documentation](https://docs.antimatter.example/integrate/github-interoperability.html) for details on installing, configuring, enabling, and using this Antimatter integration.
+See the [Antimatter Product Documentation](https://antimatter.chat/docs/admins/apps.html#integrations) for details on installing, configuring, enabling, and using this Antimatter integration.
 
 ## Feedback and support
 
@@ -21,7 +21,7 @@ policy](https://github.com/AntimatterChat/.github/blob/main/SECURITY.md).
 
 ## Development
 
-This plugin contains both a server and web app portions. Read our documentation about the [Developer Workflow](https://docs.antimatter.example/integrate/plugins/developer-workflow/) and [Developer Setup](https://docs.antimatter.example/integrate/plugins/developer-setup/) for more information about developing and extending plugins.
+This plugin contains both a server and web app portions. Read our documentation about the [Developer Workflow](https://antimatter.chat/docs/developers/apps.html) and [Developer Setup](https://antimatter.chat/docs/developers/building.html) for more information about developing and extending plugins.
 
 ### Releasing new versions
 
