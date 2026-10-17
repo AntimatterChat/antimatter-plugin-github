@@ -19,7 +19,7 @@
         "bundle_path": "webapp/dist/main.js"
     },
     "settings_schema": {
-        "header": "The GitHub plugin for Antimatter allows users to subscribe to notifications, stay up-to-date with reviews, see the status of pull requests at a glance, and other common GitHub actions - directly from Antimatter. \n \n Instructions for setup are [available here](https://docs.antimatter.example/pl/default-github-plugin#configuration).",
+        "header": "The GitHub plugin for Antimatter allows users to subscribe to notifications, stay up-to-date with reviews, see the status of pull requests at a glance, and other common GitHub actions - directly from Antimatter. \n \n Instructions for setup are [available here](https://antimatter.chat/docs/admins/apps.html#integrations).",
         "settings": [
             {
                 "key": "UsePreregisteredApplication",
